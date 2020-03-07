@@ -3,3 +3,22 @@
     font-weight: 500;
     max-width: 7em;
 }
+.example-card {
+    max-width: 400px;
+  }
+  
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.button-confirm-pay {
+  background:    #999999;
+  border-radius: 9px;
+  color:         #ffffff;
+  text-align:    center;
+}
+
+.button-confirm-pay:focus {
+  display: none;
+}
