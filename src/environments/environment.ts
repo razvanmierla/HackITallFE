@@ -1,7 +1,6 @@
 
 export const environment = {
-  production: false,
-
-  productApiUrl: 'http://hackitall.live/products',
+  production: true,
+  productApiUrl: 'http://localhost:3005/api/products',
 };
 
