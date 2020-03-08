@@ -1,70 +1,86 @@
-<div style="width: 100%; height: 100%;">
+<div class="content-wrapper">
+  <div style="padding: 2em;">
+    <br />
+    <br />
 
-    <div style="padding: 2em;">
-    <div class="row justify-content-lg-center" >
-            <div class="title" style="display: block; margin: auto;">Copii de la 404</div>
+    <div class="row justify-content-center">
+      <mat-card
+        class="example-card col-lg-12"
+        style="margin-right: 4em; max-width: 50em;"
+      >
+        <div class="row justify-content-center" style="margin-bottom: 2em;">
+          <mat-card-header>
+            <mat-card-title>Avira Vending Machine</mat-card-title>
+          </mat-card-header>
         </div>
 
-        <br> <br>
-
+        <div class="row justify-content-center" style="margin-bottom: 5em;">
+          <div class="col-lg-4" *ngFor="let product of products">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>{{ product.id }}</mat-card-title>
+                <mat-card-subtitle>{{ product.name }}</mat-card-subtitle>
+              </mat-card-header>
+              <img src="{{ product.imgPath }}" /><img />
+              <mat-card-content>
+                <b>{{ product.price }}$ </b></mat-card-content
+              >
+            </mat-card>
+          </div>
+        </div>
 
         <div class="row justify-content-center">
-            <mat-card class="example-card col-lg-4" style="margin-right: 4em; max-width: 50em;">
-                <div class="row justify-content-center" style="margin-bottom: 2em;">
-                    <mat-card-header>
-                        <mat-card-title>Avira Vending Machine</mat-card-title>
-                    </mat-card-header>
-                </div>   
-                
-                <div class="row justify-content-center" style="margin-bottom: 5em;">
-                    <p class="col-lg-8" style="text-align: center;">Plm produse nu stiu cum</p>
-                </div>
+          <mat-form-field appearance="fill" class="col-lg-6">
+            <mat-label type="number">Id-ul produsului</mat-label>
+            <input matInput />
+          </mat-form-field>
 
-                <div class="row justify-content-center">
-                    <mat-form-field appearance="fill" class="col-lg-6">
-                        <mat-label type="number">Id-ul produsului</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-    
-                    <mat-form-field appearance="fill" class="col-lg-6">
-                        <mat-label>Cantitatea produsului</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </div>
-               
-                <mat-card-actions>
-                    <mat-radio-group aria-label="Select an option">
-                        <div class="row justify-content-center">
-                            <mat-radio-button value="1">CASH</mat-radio-button>
-                        </div>
-                        <div class="row justify-content-center">
-                            <mat-radio-button value="2">CARD</mat-radio-button>
-                        </div>
-                    </mat-radio-group>
-                </mat-card-actions>
-
-                <mat-card>Ai selectat plata cash pentru 20 de Avira Optimizer</mat-card>
-                <br>
-
-                <div class="row justify-content-center" style="margin-bottom: 2em;">
-                    <button mat-button class="col-lg-6 button-confirm-pay">Confirma plata</button>
-                </div>
-
-                <mat-card>Mesaj de genul: ai primit restul de 2 lei!</mat-card>
-
-            </mat-card>
-
-            <mat-card class="example-card col-lg-4"  style=" max-width: 50em;">
-                <div class="row justify-content-center" style="margin-bottom: 2em;">
-                    <mat-card-header>
-                        <mat-card-title>Specificatii</mat-card-title>
-                    </mat-card-header>
-                </div>   
-                <mat-checkbox class="row" style="margin-left: 2em;">Exista conexiune la internet?</mat-checkbox>
-                <mat-checkbox class="row" style="margin-left: 2em;">Exista bani pe card?</mat-checkbox>
-                
-            </mat-card>
+          <mat-form-field appearance="fill" class="col-lg-6">
+            <mat-label>Cantitatea produsului</mat-label>
+            <input matInput />
+          </mat-form-field>
         </div>
 
+        <mat-card-actions>
+          <mat-radio-group aria-label="Select an option">
+            <div class="row justify-content-center">
+              <mat-radio-button value="1">CASH</mat-radio-button>
+            </div>
+            <div class="row justify-content-center">
+              <mat-radio-button value="2">CARD</mat-radio-button>
+            </div>
+          </mat-radio-group>
+        </mat-card-actions>
+
+        <mat-card>Ai selectat plata cash pentru 20 de Avira Optimizer</mat-card>
+        <br />
+
+        <div class="row justify-content-center" style="margin-bottom: 2em;">
+          <button mat-button class="col-lg-6 button-confirm-pay">
+            Confirma plata
+          </button>
+        </div>
+
+        <mat-card>Mesaj de genul: ai primit restul de 2 lei!</mat-card>
+      </mat-card>
+
+      <mat-card
+        *ngIf="usesCash"
+        class="example-card col-lg-4"
+        style=" max-width: 50em;"
+      >
+        <div class="row justify-content-center" style="margin-bottom: 2em;">
+          <mat-card-header>
+            <mat-card-title>Specificatii</mat-card-title>
+          </mat-card-header>
+        </div>
+        <mat-checkbox class="row" style="margin-left: 2em;"
+          >Exista conexiune la internet?</mat-checkbox
+        >
+        <mat-checkbox class="row" style="margin-left: 2em;"
+          >Exista bani pe card?</mat-checkbox
+        >
+      </mat-card>
     </div>
+  </div>
 </div>

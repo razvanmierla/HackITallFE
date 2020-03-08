@@ -1,22 +1,27 @@
-.title{
-    font-size: 2.5em;
-    font-weight: 500;
-    max-width: 7em;
+.title {
+  font-size: 2.5em;
+  font-weight: 500;
+  max-width: 7em;
 }
 .example-card {
-    max-width: 400px;
-  }
-  
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+  max-width: 400px;
+}
+.content-wrapper {
+  background: rgb(131, 23, 28);
+  background: linear-gradient(
+    180deg,
+    rgba(131, 23, 28, 1) 0%,
+    rgba(225, 31, 39, 1) 100%
+  );
+  background-size: auto 100%;
+  min-height: 100%;
 }
 
 .button-confirm-pay {
-  background:    #999999;
+  background: #999999;
   border-radius: 9px;
-  color:         #ffffff;
-  text-align:    center;
+  color: #ffffff;
+  text-align: center;
 }
 
 .button-confirm-pay:focus {
