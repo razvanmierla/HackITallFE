@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
   usesCash = false;
   productId: number;
   productQuantity: number;
-  radioButtonValue: number;
   sumPaid: number;
 
   private async getProducts(): Promise<Product[]> {
@@ -38,7 +37,9 @@ export class AppComponent implements OnInit {
   }
 
   onRadioButtonChange(e) {
-    this.radioButtonValue = e.value;
+    if (e.value == 1) {
+      this.usesCash = true;
+    }
   }
 
   onSumPaidChange(e) {

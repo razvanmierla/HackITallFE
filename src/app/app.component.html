@@ -52,7 +52,7 @@
           {{ this.products[this.productId - 1].name }}</mat-card>
         <br />
 
-        <div class="row justify-content-center" *ngIf="radioButtonValue == 1">
+        <div class="row justify-content-center" *ngIf="usesCash">
           <mat-form-field appearance="fill" class="col-lg-6">
             <mat-label type="number">Suma introdusa</mat-label>
             <input matInput (change)="onSumPaidChange($event)" />
