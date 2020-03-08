@@ -21,7 +21,7 @@
                 <mat-card-title>{{ product.id }}</mat-card-title>
                 <mat-card-subtitle>{{ product.name }}</mat-card-subtitle>
               </mat-card-header>
-              <img src="{{ product.imgPath }}" /><img />
+              <img src="{{ product.imgPath }}" width="70" height="140" /><img />
               <mat-card-content>
                 <b>{{ product.price }}$ </b></mat-card-content
               >
@@ -32,12 +32,12 @@
         <div class="row justify-content-center">
           <mat-form-field appearance="fill" class="col-lg-6">
             <mat-label type="number">Id-ul produsului</mat-label>
-            <input matInput />
+            <input matInput (change)="onChangeIdHandler($event)" />
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="col-lg-6">
             <mat-label>Cantitatea produsului</mat-label>
-            <input matInput />
+            <input matInput (change)="onChangeQuantityHandler($event)" />
           </mat-form-field>
         </div>
 
@@ -52,33 +52,24 @@
           </mat-radio-group>
         </mat-card-actions>
 
-        <mat-card>Ai selectat plata cash pentru 20 de Avira Optimizer</mat-card>
+        <mat-card *ngIf="productId && productQuantity"
+          >Ai selectat {{ this.productQuantity }}
+          {{ this.products[this.productId - 1].name }}</mat-card
+        >
         <br />
 
         <div class="row justify-content-center" style="margin-bottom: 2em;">
-          <button mat-button class="col-lg-6 button-confirm-pay">
+          <button
+            mat-button
+            class="col-lg-6 button-confirm-pay"
+            (submit)="submit()"
+          >
             Confirma plata
           </button>
         </div>
 
-        <mat-card>Mesaj de genul: ai primit restul de 2 lei!</mat-card>
-      </mat-card>
-
-      <mat-card
-        *ngIf="usesCash"
-        class="example-card col-lg-4"
-        style=" max-width: 50em;"
-      >
-        <div class="row justify-content-center" style="margin-bottom: 2em;">
-          <mat-card-header>
-            <mat-card-title>Specificatii</mat-card-title>
-          </mat-card-header>
-        </div>
-        <mat-checkbox class="row" style="margin-left: 2em;"
-          >Exista conexiune la internet?</mat-checkbox
-        >
-        <mat-checkbox class="row" style="margin-left: 2em;"
-          >Exista bani pe card?</mat-checkbox
+        <mat-card *ngIf="usesCash"
+          >Mesaj de genul: ai primit restul de 2 lei!</mat-card
         >
       </mat-card>
     </div>
