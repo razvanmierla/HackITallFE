@@ -13,7 +13,6 @@ import { MatFormFieldModule } from "@angular/material";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatRadioModule } from "@angular/material/radio";
 import { HttpClientModule } from "@angular/common/http";
-import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,9 +29,8 @@ import { ToastrModule } from "ngx-toastr";
     MatCheckboxModule,
     MatRadioModule,
     HttpClientModule,
-    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -4,10 +4,7 @@
     <br />
 
     <div class="row justify-content-center">
-      <mat-card
-        class="example-card col-lg-12"
-        style="margin-right: 4em; max-width: 50em;"
-      >
+      <mat-card class="example-card col-lg-12" style="margin-right: 4em; max-width: 50em;">
         <div class="row justify-content-center" style="margin-bottom: 2em;">
           <mat-card-header>
             <mat-card-title>Avira Vending Machine</mat-card-title>
@@ -23,8 +20,7 @@
               </mat-card-header>
               <img src="{{ product.imgPath }}" width="70" height="140" /><img />
               <mat-card-content>
-                <b>{{ product.price }}$ </b></mat-card-content
-              >
+                <b>{{ product.price }}$ </b></mat-card-content>
             </mat-card>
           </div>
         </div>
@@ -44,33 +40,31 @@
         <mat-card-actions>
           <mat-radio-group aria-label="Select an option">
             <div class="row justify-content-center">
-              <mat-radio-button value="1">CASH</mat-radio-button>
+              <mat-radio-button value="1" (change)="onRadioButtonChange($event)">CASH</mat-radio-button>
             </div>
             <div class="row justify-content-center">
-              <mat-radio-button value="2">CARD</mat-radio-button>
+              <mat-radio-button value="2" (change)="onRadioButtonChange($event)">CARD</mat-radio-button>
             </div>
           </mat-radio-group>
         </mat-card-actions>
 
-        <mat-card *ngIf="productId && productQuantity"
-          >Ai selectat {{ this.productQuantity }}
-          {{ this.products[this.productId - 1].name }}</mat-card
-        >
+        <mat-card *ngIf="productId && productQuantity">Ai selectat {{ this.productQuantity }}
+          {{ this.products[this.productId - 1].name }}</mat-card>
         <br />
 
+        <div class="row justify-content-center" *ngIf="radioButtonValue == 1">
+          <mat-form-field appearance="fill" class="col-lg-6">
+            <mat-label type="number">Suma introdusa</mat-label>
+            <input matInput (change)="onSumPaidChange($event)" />
+          </mat-form-field>
+        </div>
         <div class="row justify-content-center" style="margin-bottom: 2em;">
-          <button
-            mat-button
-            class="col-lg-6 button-confirm-pay"
-            (submit)="submit()"
-          >
+          <button mat-button class="col-lg-6 button-confirm-pay" (submit)="submit()">
             Confirma plata
           </button>
         </div>
 
-        <mat-card *ngIf="usesCash"
-          >Mesaj de genul: ai primit restul de 2 lei!</mat-card
-        >
+        <mat-card *ngIf="usesCash">Mesaj de genul: ai primit restul de 2 lei!</mat-card>
       </mat-card>
     </div>
   </div>

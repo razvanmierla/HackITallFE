@@ -2,7 +2,6 @@ import { Component, OnInit, OnChanges } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Product } from "./product";
-import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-root",
@@ -15,6 +14,8 @@ export class AppComponent implements OnInit {
   usesCash = false;
   productId: number;
   productQuantity: number;
+  radioButtonValue: number;
+  sumPaid: number;
 
   private async getProducts(): Promise<Product[]> {
     return await this.http
@@ -28,15 +29,23 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onChangeIdHandler(event) {
-    this.productId = event.target.value;
+  onChangeIdHandler(e) {
+    this.productId = e.target.value;
   }
 
   onChangeQuantityHandler(e) {
     this.productQuantity = e.target.value;
   }
 
-  submit() {}
+  onRadioButtonChange(e) {
+    this.radioButtonValue = e.value;
+  }
 
-  constructor(private http: HttpClient) {}
+  onSumPaidChange(e) {
+    this.sumPaid = e.target.value;;
+  }
+
+  submit() { }
+
+  constructor(private http: HttpClient) { }
 }
