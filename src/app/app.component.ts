@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProducts().then(data => {
+    this.getProducts().then((data: any) => {
       console.log(data);
       this.products = data.products;
     });
