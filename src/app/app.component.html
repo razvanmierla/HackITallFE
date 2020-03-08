@@ -58,13 +58,15 @@
             <input matInput (change)="onSumPaidChange($event)" />
           </mat-form-field>
         </div>
+
+
         <div class="row justify-content-center" style="margin-bottom: 2em;">
           <button mat-button class="col-lg-6 button-confirm-pay" (submit)="submit()">
             Confirma plata
           </button>
         </div>
+        <mat-card *ngIf="sumPaid">Mesaj de genul: ai primit restul de {{this.rest}}lei!</mat-card>
 
-        <mat-card *ngIf="usesCash">Mesaj de genul: ai primit restul de 2 lei!</mat-card>
       </mat-card>
     </div>
   </div>
