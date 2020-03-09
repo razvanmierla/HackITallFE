@@ -61,11 +61,12 @@
 
 
         <div class="row justify-content-center" style="margin-bottom: 2em;">
-          <button mat-button class="col-lg-6 button-confirm-pay" (submit)="submit()">
+          <button mat-button class="col-lg-6 button-confirm-pay" (click)="submit()">
             Confirma plata
           </button>
         </div>
-        <mat-card *ngIf="sumPaid">Mesaj de genul: ai primit restul de {{this.rest}}lei!</mat-card>
+        <mat-card *ngIf="tooMuchMoney">Ai primit restul de {{this.rest}}lei !</mat-card>
+        <mat-card *ngIf="notEnoughMoney">Suma introdusa nu este suficienta</mat-card>
 
       </mat-card>
     </div>
