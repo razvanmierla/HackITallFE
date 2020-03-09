@@ -17,8 +17,14 @@ export class AppComponent implements OnInit {
   sumPaid: number;
   rest: number;
   selectedProduct: Product;
+  notEnoughQuantityCheck = false;
+  notEnoughQuantityMessage: String;
   notEnoughMoney = false;
   tooMuchMoney = false;
+  serverErrorMessage: String;
+  serverSideError = false;
+  serverUpdatedMessage: String;
+  serverUpdateOk = false;
 
   private async getProducts(): Promise<Product[]> {
     return await this.http
@@ -26,16 +32,15 @@ export class AppComponent implements OnInit {
       .toPromise();
   }
 
-  private async updateProduct(productID: number,productQuantity: number): Promise<Product> {
+  private async updateProduct(productID: number, productQuantity: number): Promise<Product> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return await this.http
-      .put<Product>(environment.productApiUrl + '/' + productID + '/' + productQuantity, { responseType: 'json', headers})
+      .put<Product>(environment.productApiUrl + '/' + productID + '/' + productQuantity, { responseType: 'json', headers })
       .toPromise();
   }
 
   ngOnInit() {
     this.getProducts().then((data: any) => {
-      console.log(data);
       this.products = data.products;
     });
   }
@@ -64,15 +69,18 @@ export class AppComponent implements OnInit {
   }
 
   checkQuantity() {
-    if (this.productQuantity > this.selectedProduct.quantity) {
-      console.log('Cantitate indisponibila. Stocul este de: ' + this.selectedProduct.quantity);
+    if (this.productQuantity <= this.selectedProduct.quantity) {
+      return true;
     }
+    this.notEnoughQuantityCheck = true;
+    console.log('Insufficient product quantity. Current stock is ' + this.selectedProduct.quantity);
+    this.notEnoughQuantityMessage = 'Insufficient product quantity. Current stock is ' + this.selectedProduct.quantity;
+    return false;
   }
 
   calculateRest() {
     let totalSumForProduct = this.productQuantity * this.selectedProduct.price;
     if (this.sumPaid != 0 && this.sumPaid > totalSumForProduct) {
-      console.log(this.sumPaid, totalSumForProduct);
       this.rest = this.sumPaid - totalSumForProduct;
       this.tooMuchMoney = true;
       this.notEnoughMoney = false;
@@ -82,8 +90,15 @@ export class AppComponent implements OnInit {
     }
   }
   submit() {
-    this.updateProduct(this.productId,this.productQuantity);
-   }
+    this.updateProduct(this.productId, this.productQuantity).then((res: any) => {
+      this.serverUpdateOk = true;
+      this.serverUpdatedMessage = res.message;
+      console.log(res)
+    }).catch(err => {
+      this.serverSideError = true;
+      this.serverErrorMessage = err.error.message;
+    });
+  }
 
   constructor(private http: HttpClient) { }
 }

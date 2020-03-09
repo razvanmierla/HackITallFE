@@ -13,7 +13,7 @@
 
         <div class="row justify-content-center" style="margin-bottom: 5em;">
           <div class="col-lg-4" *ngFor="let product of products">
-            <mat-card>
+            <mat-card style="margin-bottom: 1em;">
               <mat-card-header>
                 <mat-card-title>{{ product.id }}</mat-card-title>
                 <mat-card-subtitle>{{ product.name }}</mat-card-subtitle>
@@ -66,8 +66,11 @@
           </button>
         </div>
         <mat-card *ngIf="tooMuchMoney">Ai primit restul de {{this.rest}}lei !</mat-card>
-        <mat-card *ngIf="notEnoughMoney">Suma introdusa nu este suficienta</mat-card>
+        <mat-card *ngIf="serverUpdateOk && tooMuchMoney">{{this.serverUpdatedMessage}}</mat-card>
 
+        <mat-card *ngIf="notEnoughQuantityCheck">{{this.notEnoughQuantityMessage}}</mat-card>
+        <mat-card *ngIf="notEnoughMoney">Suma introdusa nu este suficienta</mat-card>
+        <mat-card *ngIf="serverSideError">{{this.serverErrorMessage}}</mat-card>
       </mat-card>
     </div>
   </div>
